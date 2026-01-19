@@ -1,3 +1,5 @@
+const { set } = require("mongoose");
+
 const board= document.querySelector('.board');
 const blockHeight = 50;
 const blockWidth = 50;
@@ -13,6 +15,7 @@ const snake = [{
 }, {
     x: 1, y: 5
 }]
+let direction = 'left'
 
 
 
@@ -31,7 +34,12 @@ for(let row = 0; row<rows;row++){
 
 function render(){
     snake.forEach(segment => {
-        console.log(segment)
-        
+        blocks[`${segment.x}-${segment.y}`].classList.add("fill");
     })
 }
+
+setInterval(() => {
+
+    let head = null;
+    render()
+}, 300);
