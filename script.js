@@ -1,5 +1,3 @@
-// const { set } = require("mongoose");
-
 const board= document.querySelector('.board');
 const blockHeight = 50;
 const blockWidth = 50;
@@ -8,15 +6,12 @@ const cols = Math.floor(board.clientWidth / blockWidth );
 const rows = Math.floor(board.clientHeight / blockHeight );
 
 const blocks = [];
-const snake = [{
+const snake = [
+    {
     x: 1, y: 7
-}, {
-    x: 1, y: 8
-}, {
-    x: 1, y: 9
-}]
+    } ]
 
-let direction = 'left'
+let direction = 'down'
 
 
 
@@ -42,6 +37,12 @@ setInterval(() => {
 
     if(direction === "left"){
         head = {x: snake[0].x, y: snake[0].y-1};
+    }else if ( direction === "right"){
+        head={ x : snake[0].x, y:snake[0].y+1};
+    }else if ( direction === "down"){
+        head={ x : snake[0].x+1, y:snake[0].y};
+    }else if ( direction === "up"){
+        head={ x : snake[0].x-1, y:snake[0].y};
     }
 
     snake.forEach(segment =>{
@@ -54,3 +55,16 @@ setInterval(() => {
 
     render()
 }, 300);
+
+addEventListener("keydown",(event) =>{
+
+    if(event.key == "ArrowUp"){
+        direction="up";
+    }else if(event.key == "ArrowRight"){
+        direction="right";
+    }else if(event.key == "ArrowDown"){
+        direction="down";
+    }else if(event.key == "ArrowLeft"){
+        direction="left";
+    }
+})
