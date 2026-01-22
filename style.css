@@ -37,14 +37,7 @@ html,body{
     --border-radius-lg: 16px;
     --border-radius-xl: 20px;
     --border-radius-2xl:24px;
-
-    /*  */
-
-
 }
-
-
-
 
 html{
     background-color: var(--bg-primary-color);
@@ -103,9 +96,10 @@ section .infos{
 }
 
 .block{
-    /* width: 30px;
-    height: 30px; */
-    border: 1px solid var(--border-primary-color);
+    /*width: 30px;
+    height: 30px;
+    */border: 1px solid var(--border-primary-color);
+    border-radius: 50%;
 }
 
 .fill{

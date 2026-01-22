@@ -21,7 +21,9 @@ highScoreElement.innerText = highScore
 
 const cols = Math.floor(board.clientWidth / blockWidth );
 const rows = Math.floor(board.clientHeight / blockHeight );
+
 let intervalId = null;
+let timeIntervalId = null;
 let food = {x:Math.floor(Math.random()*rows), y: Math.floor(Math.random()*cols)}
 
 const blocks = [];
@@ -102,14 +104,26 @@ function render(){
     })
 }
 
-// intervalId = setInterval(() => {
-//     render()
-// }, 300);
 
 startButton.addEventListener("click",()=>{
     modal.style.display= "none";
     intervalId = setInterval(() => {render()},300)
+    timeIntervalId = setInterval(() =>{
+        let [min,sec] = time.split("-").map(Number)
+
+        if(sec == 59){
+            min+=1;
+            sec=0;
+        }else{
+            sec+=1
+        }
+
+        time = `${min}-${sec}`
+        timeElement.innerText = time
+    }, 1000)
 })
+
+
 
 restartButton.addEventListener("click",restartGame)
 
@@ -146,6 +160,7 @@ function restartGame() {
 
     intervalId = setInterval(render, 300);
 }
+
 
 
 document.addEventListener("keydown", (event) => {
